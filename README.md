@@ -1,4 +1,4 @@
-# ⏰ Cute Flip Clock Widget
+# Cute Flip Clock Widget
 
 A responsive flip clock widget designed for Notion embeds.
 
