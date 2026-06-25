@@ -63,3 +63,25 @@ function updateClock() {
 // Run loop
 updateClock();
 setInterval(updateClock, 1000);
+
+// --- FORCE NOTION EMBED TRANSPARENCY & THEME MATCHING ---
+(function() {
+  function matchSystemTheme() {
+    try {
+      // Detects if the local system/Notion environment prefers dark themes
+      const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Updates the root page structure background dynamically
+      document.body.style.background = isDark ? '#191919' : 'transparent'; 
+      document.documentElement.style.background = isDark ? '#191919' : 'transparent';
+    } catch(e) {
+      document.body.style.background = 'transparent';
+    }
+  }
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(matchSystemTheme);
+  }
+  matchSystemTheme();
+})();
+
