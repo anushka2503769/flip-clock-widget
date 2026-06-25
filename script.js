@@ -61,10 +61,16 @@ function update() {
   document.getElementById("clock").textContent =
     `${hours}:${minutes}`;
 
-
+  document.getElementById("date").textContent =
+    now.toLocaleDateString(
+      undefined,
+      {
+        weekday:"long",
+        month:"long",
+        day:"numeric"
+      }
     );
 }
-
 update();
 
 /* update every second so minute changes exactly on time */
