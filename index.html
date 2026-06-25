@@ -2,348 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
-<title>Flip Clock Widget</title>
+<title>Notion Flip Clock</title>
 
-<style>
-:root{
-    --bg:#111827;
-    --card:#1b2230;
-    --text:#ffd21f;
-    --divider:#0f141d;
-    --shadow:rgba(0,0,0,.45);
-    --radius:12px;
-}
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap"
+rel="stylesheet"
+/>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html,body{
-    width:100%;
-    height:100%;
-    background:transparent;
-    overflow:hidden;
-    font-family:
-        Inter,
-        SF Pro Display,
-        Segoe UI,
-        Helvetica,
-        Arial,
-        sans-serif;
-}
-
-.wrapper{
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.clock{
-    display:flex;
-    gap:8px;
-    align-items:center;
-}
-
-.flip-card{
-    width:95px;
-    height:135px;
-    position:relative;
-    perspective:1000px;
-}
-
-.static-card{
-    position:absolute;
-    inset:0;
-    border-radius:var(--radius);
-    overflow:hidden;
-    background:var(--card);
-    box-shadow:
-        0 8px 20px var(--shadow),
-        inset 0 1px rgba(255,255,255,.04);
-}
-
-.top,
-.bottom{
-    position:absolute;
-    left:0;
-    width:100%;
-    height:50%;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    color:var(--text);
-    font-weight:800;
-    font-size:84px;
-    line-height:1;
-}
-
-.top{
-    top:0;
-    align-items:flex-end;
-    padding-bottom:2px;
-}
-
-.bottom{
-    bottom:0;
-    align-items:flex-start;
-    padding-top:2px;
-}
-
-.divider{
-    position:absolute;
-    top:50%;
-    left:0;
-    width:100%;
-    height:2px;
-    background:var(--divider);
-    z-index:20;
-}
-
-.divider::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    box-shadow:0 1px rgba(255,255,255,.05);
-}
-
-.flip-top,
-.flip-bottom{
-    position:absolute;
-    left:0;
-    width:100%;
-    height:50%;
-    overflow:hidden;
-    background:var(--card);
-    color:var(--text);
-    display:flex;
-    justify-content:center;
-    font-size:84px;
-    font-weight:800;
-    backface-visibility:hidden;
-    z-index:30;
-}
-
-.flip-top{
-    top:0;
-    align-items:flex-end;
-    padding-bottom:2px;
-    transform-origin:bottom;
-}
-
-.flip-bottom{
-    bottom:0;
-    align-items:flex-start;
-    padding-top:2px;
-    transform-origin:top;
-    transform:rotateX(90deg);
-}
-
-.flip-top.animate{
-    animation:flipTop .35s ease-in forwards;
-}
-
-.flip-bottom.animate{
-    animation:flipBottom .35s ease-out .35s forwards;
-}
-
-@keyframes flipTop{
-    from{
-        transform:rotateX(0);
-    }
-    to{
-        transform:rotateX(-90deg);
-    }
-}
-
-@keyframes flipBottom{
-    from{
-        transform:rotateX(90deg);
-    }
-    to{
-        transform:rotateX(0);
-    }
-}
-
-.ampm{
-    position:absolute;
-    left:10px;
-    bottom:10px;
-    color:var(--text);
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.12em;
-}
-
-.separator{
-    color:var(--text);
-    font-size:70px;
-    font-weight:700;
-    margin:0 2px;
-}
-
-@media(max-width:700px){
-    .flip-card{
-        width:70px;
-        height:100px;
-    }
-
-    .top,
-    .bottom,
-    .flip-top,
-    .flip-bottom{
-        font-size:62px;
-    }
-
-    .separator{
-        font-size:50px;
-    }
-}
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="wrapper">
-    <div class="clock">
+<div id="clock">
 
-        <div class="flip-card" id="h1"></div>
-        <div class="flip-card" id="h2"></div>
+  <div class="panel hour">
+    <div class="label" id="ampm">AM</div>
 
-        <div class="separator">:</div>
-
-        <div class="flip-card" id="m1"></div>
-        <div class="flip-card" id="m2"></div>
-
+    <div class="flip-card">
+      <div class="top" id="hour-top">12</div>
+      <div class="bottom" id="hour-bottom">12</div>
+      <div class="flip" id="hour-flip">12</div>
     </div>
+  </div>
+
+  <div class="panel minute">
+
+    <div class="flip-card">
+      <div class="top" id="minute-top">00</div>
+      <div class="bottom" id="minute-bottom">00</div>
+      <div class="flip" id="minute-flip">00</div>
+    </div>
+
+  </div>
+
 </div>
 
-<script>
-function getParam(name, fallback){
-    return new URLSearchParams(location.search).get(name) || fallback;
-}
-
-document.documentElement.style.setProperty(
-    '--card',
-    getParam('card','#1b2230')
-);
-
-document.documentElement.style.setProperty(
-    '--text',
-    getParam('text','#ffd21f')
-);
-
-document.documentElement.style.setProperty(
-    '--divider',
-    getParam('divider','#0f141d')
-);
-
-class FlipDigit{
-    constructor(element){
-        this.el = element;
-        this.value = null;
-
-        this.el.innerHTML = `
-            <div class="static-card">
-                <div class="top">0</div>
-                <div class="bottom">0</div>
-                <div class="divider"></div>
-                <div class="ampm"></div>
-            </div>
-        `;
-
-        this.top = this.el.querySelector('.top');
-        this.bottom = this.el.querySelector('.bottom');
-    }
-
-    set(num, ampm=''){
-        if(this.value === null){
-            this.top.textContent = num;
-            this.bottom.textContent = num;
-            this.value = num;
-
-            const label =
-                this.el.querySelector('.ampm');
-
-            label.textContent = ampm;
-
-            return;
-        }
-
-        if(this.value === num) return;
-
-        const oldVal = this.value;
-        this.value = num;
-
-        const flipTop = document.createElement('div');
-        flipTop.className = 'flip-top';
-        flipTop.textContent = oldVal;
-
-        const flipBottom = document.createElement('div');
-        flipBottom.className = 'flip-bottom';
-        flipBottom.textContent = num;
-
-        this.el.appendChild(flipTop);
-        this.el.appendChild(flipBottom);
-
-        flipTop.classList.add('animate');
-        flipBottom.classList.add('animate');
-
-        setTimeout(()=>{
-            this.top.textContent = num;
-            this.bottom.textContent = num;
-
-            flipTop.remove();
-            flipBottom.remove();
-        },700);
-
-        const label =
-            this.el.querySelector('.ampm');
-
-        label.textContent = ampm;
-    }
-}
-
-const digits = {
-    h1:new FlipDigit(document.getElementById('h1')),
-    h2:new FlipDigit(document.getElementById('h2')),
-    m1:new FlipDigit(document.getElementById('m1')),
-    m2:new FlipDigit(document.getElementById('m2'))
-};
-
-function updateClock(){
-
-    const now = new Date();
-
-    let hours = now.getHours();
-
-    const ampm =
-        hours >= 12 ? 'PM' : 'AM';
-
-    hours = hours % 12;
-    if(hours === 0) hours = 12;
-
-    const minutes =
-        String(now.getMinutes()).padStart(2,'0');
-
-    const hh =
-        String(hours).padStart(2,'0');
-
-    digits.h1.set(hh[0],ampm);
-    digits.h2.set(hh[1]);
-    digits.m1.set(minutes[0]);
-    digits.m2.set(minutes[1]);
-}
-
-updateClock();
-
-setInterval(updateClock,1000);
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
