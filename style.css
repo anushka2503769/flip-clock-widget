@@ -16,7 +16,7 @@ body{
   height:100%;
   overflow:hidden;
   font-family:Inter,sans-serif;
-  background:transparent;
+  background:transparent; /* Keeps webpage background fully clear */
 }
 
 body{
@@ -24,6 +24,7 @@ body{
   justify-content:center;
   align-items:center;
   padding:2vw;
+  background:transparent; /* Ensures no hidden body backgrounds remain */
 }
 
 #clock{
@@ -31,6 +32,7 @@ body{
   height:100%;
   display:flex;
   gap:2vw;
+  background:transparent; /* Removes the white/gray wrapper box behind cards */
 }
 
 .panel{
@@ -60,29 +62,31 @@ body{
   font-weight:900;
   color:var(--text);
   user-select:none;
-  overflow:hidden;     /* CRITICAL: Cuts off the overlapping numbers */
-  line-height:0;       /* CRITICAL: Standardizes text positioning baseline */
+  overflow:hidden;     
+  line-height:0;       
 }
 
 .top, 
 .flip {
   top:0;
-  align-items:flex-end; /* Aligns baseline of text to the bottom edge of top panel */
+  align-items:flex-end; 
 }
 
 .bottom {
   bottom:0;
-  align-items:flex-start; /* Aligns baseline of text to the top edge of bottom panel */
+  align-items:flex-start; 
 }
 
-/* Offset positioning to align text splits exactly in the middle */
+/* --- DYNAMIC ELONGATION HACK --- */
+/* scaleY(1.3) stretches the text vertically. 
+   Using vw/vh responsive scaling scales the stretch automatically with the layout. */
 .top span,
 .flip span {
-  transform: translateY(22%); /* Pulls text down to center vertically across the line */
+  transform: scaleY(1.3) translateY(16%); 
 }
 
 .bottom span {
-  transform: translateY(-28%); /* Pushes text up to align perfectly with top panel split */
+  transform: scaleY(1.3) translateY(-21%); 
 }
 
 .top{
