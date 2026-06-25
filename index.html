@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Notion Clock</title>
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<title>Notion Flip Clock</title>
 
-<link rel="stylesheet" href="style.css">
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="widget">
+<div id="clock">
 
-   <div id="clock" class="time">
-    00:00
+  <div class="panel hour">
+    <div class="label" id="ampm">AM</div>
+
+    <div class="flip-card">
+      <div class="top" id="hour-top">12</div>
+      <div class="bottom" id="hour-bottom">12</div>
+      <div class="flip" id="hour-flip">12</div>
+    </div>
+  </div>
+
+  <div class="panel minute">
+
+    <div class="flip-card">
+      <div class="top" id="minute-top">00</div>
+      <div class="bottom" id="minute-bottom">00</div>
+      <div class="flip" id="minute-flip">00</div>
+    </div>
+
   </div>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
