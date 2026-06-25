@@ -21,7 +21,14 @@ const themes = {
     bg: "#EDF7FF",
     glass: "rgba(237,247,255,.85)",
     text: "#339AF0"
+  },
+
+  chocolate: {
+  bg: "#2C1A11",
+  glass: "rgba(44, 26, 17, 0.85)",
+  text: "#D0A98C"
   }
+
 };
 
 const params = new URLSearchParams(location.search);
@@ -54,14 +61,7 @@ function update() {
   document.getElementById("clock").textContent =
     `${hours}:${minutes}`;
 
-  document.getElementById("date").textContent =
-    now.toLocaleDateString(
-      undefined,
-      {
-        weekday:"long",
-        month:"long",
-        day:"numeric"
-      }
+
     );
 }
 
