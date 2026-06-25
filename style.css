@@ -1,0 +1,89 @@
+:root {
+  --bg: #111827;
+  --card: #1f2937;
+  --text: white;
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: Inter, sans-serif;
+}
+
+#clock-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 1rem;
+
+  background: var(--bg);
+
+  border-radius: var(--radius);
+
+  width: min(95vw, 900px);
+}
+
+.digit {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--card);
+
+  color: var(--text);
+
+  border-radius: 18px;
+
+  aspect-ratio: 1 / 1.2;
+
+  font-weight: 700;
+
+  font-size: clamp(2rem, 8vw, 7rem);
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.flip {
+  animation: flip 0.4s ease;
+}
+
+.separator {
+  color: var(--text);
+
+  font-size: clamp(2rem, 7vw, 6rem);
+
+  font-weight: 700;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
