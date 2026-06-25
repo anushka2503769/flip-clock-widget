@@ -9,13 +9,13 @@ document.documentElement.style.setProperty("--bg", "#" + BG);
 document.documentElement.style.setProperty("--text", "#" + TEXT);
 document.documentElement.style.setProperty("--radius", RADIUS + "px");
 
-// Helper function to safely update the text inside the inner span
+// Helper function to safely update text inside the inner span
 function updateSpanText(el, value) {
   const span = el.querySelector('span');
   if (span) {
     span.textContent = value;
   } else {
-    el.textContent = value; // Fallback if span is missing
+    el.textContent = value; 
   }
 }
 
@@ -49,17 +49,17 @@ function updateClock() {
 
   document.getElementById("ampm").textContent = ampm;
 
-  // Flip elements handle their own animation trigger and text updating
+  // Handles flip element states
   flip(document.getElementById("hour-flip"), hh);
   flip(document.getElementById("minute-flip"), mm);
 
-  // Background panel elements update silently
+  // Updates hidden text layers
   updateSpanText(document.getElementById("hour-top"), hh);
   updateSpanText(document.getElementById("hour-bottom"), hh);
   updateSpanText(document.getElementById("minute-top"), mm);
   updateSpanText(document.getElementById("minute-bottom"), mm);
 }
 
-// Run immediately on load and then on a regular interval loop
+// Run loop
 updateClock();
 setInterval(updateClock, 1000);
