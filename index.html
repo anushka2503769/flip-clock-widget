@@ -1,60 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
-/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notion Flip Clock</title>
+<title>Flip Clock</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap"
-rel="stylesheet"
-/>
-
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div id="clock">
 
-  <div class="panel hour">
-    <div class="label" id="ampm">AM</div>
-
-    <div class="flip-card">
-      <div class="top">
-        <span id="hour-top">12</span>
-      </div>
-      <div class="bottom">
-        <span id="hour-bottom">12</span>
-      </div>      
-      <div class="flip">
-        <span id="hour-flip">12</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel minute">
-
-    <div class="flip-card">
-      <div class="top">
-        <span id="hour-top">12</span>
-      </div>      
-      <div class="bottom">
-        <span id="hour-bottom">12</span>
-      </div>
-      <div class="flip">
-        <span id="hour-flip">12</span>
-      </div>
+    <div class="group">
+        <div class="digit" id="h1"></div>
+        <div class="digit" id="h2"></div>
     </div>
 
-  </div>
+    <div class="separator">:</div>
+
+    <div class="group">
+        <div class="digit" id="m1"></div>
+        <div class="digit" id="m2"></div>
+    </div>
 
 </div>
 
+<div id="ampm">PM</div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
