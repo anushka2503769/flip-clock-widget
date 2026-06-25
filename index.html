@@ -2,45 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
-/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Notion Flip Clock</title>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap"
-rel="stylesheet"
-/>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <div id="clock">
-
   <div class="panel hour">
     <div class="label" id="ampm">AM</div>
-
     <div class="flip-card">
-      <div class="top" id="hour-top">12</div>
-      <div class="bottom" id="hour-bottom">12</div>
-      <div class="flip" id="hour-flip">12</div>
+      <div class="top" id="hour-top"><span>12</span></div>
+      <div class="bottom" id="hour-bottom"><span>12</span></div>
+      <div class="flip" id="hour-flip"><span>12</span></div>
     </div>
   </div>
 
   <div class="panel minute">
-
     <div class="flip-card">
-      <div class="top" id="minute-top">00</div>
-      <div class="bottom" id="minute-bottom">00</div>
-      <div class="flip" id="minute-flip">00</div>
+      <div class="top" id="minute-top"><span>00</span></div>
+      <div class="bottom" id="minute-bottom"><span>00</span></div>
+      <div class="flip" id="minute-flip"><span>00</span></div>
     </div>
-
   </div>
-
 </div>
 
 <script src="script.js"></script>
