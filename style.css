@@ -57,59 +57,44 @@ body{
 .top,
 .bottom,
 .flip{
-
   position:absolute;
-
   width:100%;
-  height:50%;
-
   display:flex;
   justify-content:center;
-  align-items:center;
-
-  font-weight:900;
   color:var(--text);
-
-  user-select:none;
+  font-weight:900;
+  overflow:hidden;
 }
 
+/* top half */
 .top{
   top:0;
-
-  background:
-  linear-gradient(
-    to bottom,
-    rgba(255,255,255,.03),
-    transparent
-  );
-
-  border-bottom:
-  2px solid rgba(255,255,255,.08);
+  height:50%;
+  align-items:flex-end;
+  padding-bottom:0.05em;
 }
 
+/* bottom half */
 .bottom{
   bottom:0;
-
-  background:
-  linear-gradient(
-    to top,
-    rgba(0,0,0,.2),
-    transparent
-  );
+  height:50%;
+  align-items:flex-start;
+  padding-top:0.05em;
 }
 
 .flip{
   top:0;
-
+  height:50%;
+  align-items:flex-end;
   transform-origin:bottom;
-  transform:rotateX(0deg);
+  overflow:hidden;
+}
 
-  background:var(--bg);
-
-  border-bottom:
-  2px solid rgba(255,255,255,.08);
-
-  z-index:5;
+.top span,
+.bottom span,
+.flip span{
+  font-size:min(18vw,18vh);
+  line-height:1;
 }
 
 .animate{
