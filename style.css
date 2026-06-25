@@ -116,18 +116,6 @@ body{
   animation:flip .65s ease-in-out;
 }
 
-.top span{
-  transform:translateY(50%);
-}
-
-.bottom span{
-  transform:translateY(-50%);
-}
-
-.flip span{
-  transform:translateY(50%);
-}
-
 @keyframes flip{
   0%{
     transform:rotateX(0deg);
